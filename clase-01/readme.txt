@@ -1,1 +1,1 @@
-clase 1 primer push
+clase 1 primer push con un cambio 
