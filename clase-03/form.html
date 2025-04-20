@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+
+    <form id="form-contacto"  action="/clase-02/index.html">
+        <div>
+            <label for="iname">Nombre:</label>
+            <input id="iname" type="text" name="name" >
+        </div>
+        <div>
+            <label for="isurname">Apellido:</label>
+            <input id="isurname" type="text" name="surname" >
+        </div>
+        <div>
+            <label for="iemail">Email:</label>
+            <input id="iemail" type="email" name="email" >
+        </div>
+        <div>
+            <label for="ipass">Password:</label>
+            <input id="ipass" type="password" name="password" >
+        </div>
+        <div>
+            <label for="ibirthdate">Fecha de Nacimiento:</label>
+            <input id="ibirthdate" type="date" name="birthdate">
+        </div>
+        <div>
+            <label for="iphone">Numero de telefono:</label>
+            <input id="iphone" type="tel" name="phone">
+        </div>
+        <div>
+            <label for="newsletter">¿Queres subscribirte al newsletter?</label>
+            <div>
+                <label for="inewslettersi">Si</label>
+                <input id="inewslettersi" type="radio" name="newsletter" value="si">
+                <label for="inewsletterno">No</label>
+                <input id="inewsletterno" type="radio" name="newsletter" value="no">
+            </div>
+        </div>
+        <div>
+            <label for="">¿Sobre que tematicas lees habitualmente en nuestro portal?</label>
+            <div>
+                <div>
+                    <label for="ipolitica">Politica</label>
+                    <input id="ipolitica" type="checkbox" name="politica" value="politica">
+                </div>
+                <div>
+                    <label for="ieconomia">Economia</label>
+                    <input id="ieconomia" type="checkbox" name="economia" value="economia">
+                </div>
+                <div>
+                    <label for="ideportes">Deportes</label>
+                    <input id="ideportes" type="checkbox" name="deportes" value="deportes">
+                </div>
+                <div>
+                    <label for="ichimentos">Chimentos</label>
+                    <input id="ichimentos" type="checkbox" name="chimentos" value="chimentos">
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="ifile">Agregar foto de perfil</label>
+            <input id="ifile" type="file" name="foto-contacto">
+        </div>
+    
+    	<input type="submit" value="Enviar" >
+            
+		<input type="reset" value="Borrar">
+    </form>
+
+</body>
+</html>
