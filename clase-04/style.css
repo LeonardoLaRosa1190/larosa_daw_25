@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(253, 220, 177);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+li {
+    color:rgb(248, 153, 10)
+}
+
+img  {
+    border-radius: 2rem;
+}
+
+.boton-link :hover{
+    background-color: black;
+    color: aliceblue;
+    cursor:pointer;
+    
+}
+
+#form-contacto #checkbox {
+    color:cornflowerblue
+}
