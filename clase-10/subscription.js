@@ -3,7 +3,7 @@ var fields = ['name', 'email', 'password', 'repeatPassword', 'age', 'phone', 'ad
 var API_URL = 'https://jsonplaceholder.typicode.com/';
 
 
-// Modal
+// Modal ////////////
 var modal = document.getElementById('modal');
 var closeModal = document.getElementById('closeModal');
 var modalMessage = document.getElementById('modalMessage');
@@ -11,10 +11,25 @@ var modalMessage = document.getElementById('modalMessage');
 closeModal.addEventListener('click', function () {
     modal.classList.add('hidden');
 });
-
-function showModal(message) {
+function showModal(message,flag) {
     modalMessage.textContent = message;
     modal.classList.remove('hidden');
+	switch (flag) {
+		case 'RED':
+			modalMessage.style.color = '#ff0000';
+			break;
+		case 'GREEN':
+			modalMessage.style.color = '#1aff00';
+			break;
+		case 'YELLOW':
+			modalMessage.style.color = '#fff700';
+			break;
+	}
+}
+///////////////////
+
+function cleanForm(formReset){
+	formReset.reset();
 }
 
 function showError(field, message) {
@@ -147,12 +162,16 @@ for (var i = 0; i < fields.length; i++) {
 			fetch(API_URL + '?' + new URLSearchParams(toValidate).toString())
 			.then(function(response){
 				if (response.ok) {
-					showModal('¡Suscripción exitosa!');
+					showModal('¡Suscripción exitosa!','GREEN');
+					localStorage.setItem('suscription',JSON.stringify(response))
+					cleanForm(form)
 				}
 			})
-			.catch()
+			.catch(function(){
+				showModal('Error al enviar los datos','RED');
+			})
         	
         }   else {
-        alert('Por favor corrige los errores antes de enviar el formulario.');
+        showModal ('Por favor corrige y completa los campos antes del envio','YELLOW')
         }
     });
