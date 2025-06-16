@@ -1,5 +1,21 @@
 var form = document.getElementById('subscriptionForm');
 var fields = ['name', 'email', 'password', 'repeatPassword', 'age', 'phone', 'address', 'city', 'postalCode', 'id'];
+var API_URL = 'https://jsonplaceholder.typicode.com/';
+
+
+// Modal
+var modal = document.getElementById('modal');
+var closeModal = document.getElementById('closeModal');
+var modalMessage = document.getElementById('modalMessage');
+
+closeModal.addEventListener('click', function () {
+    modal.classList.add('hidden');
+});
+
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.classList.remove('hidden');
+}
 
 function showError(field, message) {
     document.getElementById('error-' + field).textContent = message;
@@ -115,7 +131,7 @@ for (var i = 0; i < fields.length; i++) {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         var allValid = true;
-        var mensaje = '';
+		var toValidate = {};
   
         for (var i = 0; i < fields.length; i++) {
             var valid = validateField(fields[i]);
@@ -126,9 +142,16 @@ for (var i = 0; i < fields.length; i++) {
   
         if (allValid) {
             for (var j = 0; j < fields.length; j++) {
-                mensaje += fields[j] + ': ' + document.getElementById(fields[j]).value + '\n';
+                toValidate += fields[j] + ': ' + document.getElementById(fields[j]).value + ',';
             }
-        alert('Formulario enviado con éxito:\n\n' + mensaje);
+			fetch(API_URL + '?' + new URLSearchParams(toValidate).toString())
+			.then(function(response){
+				if (response.ok) {
+					showModal('¡Suscripción exitosa!');
+				}
+			})
+			.catch()
+        	
         }   else {
         alert('Por favor corrige los errores antes de enviar el formulario.');
         }
