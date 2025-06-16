@@ -2,6 +2,17 @@ var form = document.getElementById('subscriptionForm');
 var fields = ['name', 'email', 'password', 'repeatPassword', 'age', 'phone', 'address', 'city', 'postalCode', 'id'];
 var API_URL = 'https://jsonplaceholder.typicode.com/';
 
+// Cargar datos onload
+window.onload = function () {
+	var savedData = localStorage.getItem('suscription');
+    if (savedData) {
+      	var data = JSON.parse(savedData);
+      	for (var i = 0; i < fields.length; i++) {
+        	var field = fields[i];
+        	document.getElementById(field).value = data[field];
+      	}
+    }
+};
 
 // Modal ////////////
 var modal = document.getElementById('modal');
@@ -157,15 +168,16 @@ for (var i = 0; i < fields.length; i++) {
   
         if (allValid) {
             for (var j = 0; j < fields.length; j++) {
-                toValidate += fields[j] + ': ' + document.getElementById(fields[j]).value + ',';
+                //toValidate.push(fields[j] + ': ' + document.getElementById(fields[j]).value + ',');
+				toValidate[fields[j]] = document.getElementById(fields[j]).value;
             }
 			fetch(API_URL + '?' + new URLSearchParams(toValidate).toString())
 			.then(function(response){
-				if (response.ok) {
+				if (response.ok){
 					showModal('¡Suscripción exitosa!','GREEN');
-					localStorage.setItem('suscription',JSON.stringify(response))
+					localStorage.setItem('suscription',JSON.stringify(toValidate))
 					cleanForm(form)
-				}
+				} 	
 			})
 			.catch(function(){
 				showModal('Error al enviar los datos','RED');
