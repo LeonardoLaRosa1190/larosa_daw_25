@@ -1,5 +1,47 @@
 var form = document.getElementById('subscriptionForm');
 var fields = ['name', 'email', 'password', 'repeatPassword', 'age', 'phone', 'address', 'city', 'postalCode', 'id'];
+var API_URL = 'https://jsonplaceholder.typicode.com/';
+
+// Cargar datos onload
+window.onload = function () {
+	var savedData = localStorage.getItem('suscription');
+    if (savedData) {
+      	var data = JSON.parse(savedData);
+      	for (var i = 0; i < fields.length; i++) {
+        	var field = fields[i];
+        	document.getElementById(field).value = data[field];
+      	}
+    }
+};
+
+// Modal ////////////
+var modal = document.getElementById('modal');
+var closeModal = document.getElementById('closeModal');
+var modalMessage = document.getElementById('modalMessage');
+
+closeModal.addEventListener('click', function () {
+    modal.classList.add('hidden');
+});
+function showModal(message,flag) {
+    modalMessage.textContent = message;
+    modal.classList.remove('hidden');
+	switch (flag) {
+		case 'RED':
+			modalMessage.style.color = '#ff0000';
+			break;
+		case 'GREEN':
+			modalMessage.style.color = '#1aff00';
+			break;
+		case 'YELLOW':
+			modalMessage.style.color = '#fff700';
+			break;
+	}
+}
+///////////////////
+
+function cleanForm(formReset){
+	formReset.reset();
+}
 
 function showError(field, message) {
     document.getElementById('error-' + field).textContent = message;
@@ -115,7 +157,7 @@ for (var i = 0; i < fields.length; i++) {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         var allValid = true;
-        var mensaje = '';
+		var toValidate = {};
   
         for (var i = 0; i < fields.length; i++) {
             var valid = validateField(fields[i]);
@@ -126,10 +168,22 @@ for (var i = 0; i < fields.length; i++) {
   
         if (allValid) {
             for (var j = 0; j < fields.length; j++) {
-                mensaje += fields[j] + ': ' + document.getElementById(fields[j]).value + '\n';
+                //toValidate.push(fields[j] + ': ' + document.getElementById(fields[j]).value + ',');
+				toValidate[fields[j]] = document.getElementById(fields[j]).value;
             }
-        alert('Formulario enviado con éxito:\n\n' + mensaje);
+			fetch(API_URL + '?' + new URLSearchParams(toValidate).toString())
+			.then(function(response){
+				if (response.ok){
+					showModal('¡Suscripción exitosa!','GREEN');
+					localStorage.setItem('suscription',JSON.stringify(toValidate))
+					cleanForm(form)
+				} 	
+			})
+			.catch(function(){
+				showModal('Error al enviar los datos','RED');
+			})
+        	
         }   else {
-        alert('Por favor corrige los errores antes de enviar el formulario.');
+        showModal ('Por favor corrige y completa los campos antes del envio','YELLOW')
         }
     });
