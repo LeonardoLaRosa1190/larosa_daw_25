@@ -1,16 +1,14 @@
 var form = document.getElementById('subscriptionForm');
 var fields = ['name', 'email', 'password', 'repeatPassword', 'age', 'phone', 'address', 'city', 'postalCode', 'id'];
-  
+
 function showError(field, message) {
     document.getElementById('error-' + field).textContent = message;
     document.getElementById(field).style.borderColor = '#ff0000';
 }
   
-function clearError(field,valid) {
+function clearError(field) {
     document.getElementById('error-' + field).textContent = '';
-    if (valid){
-        document.getElementById(field).style.borderColor = '#00ff37'
-    }  
+    document.getElementById(field).style.borderColor = '#00ff37'  
 }
   
 function validateField(field) {
@@ -30,7 +28,7 @@ function validateField(field) {
                     showError(field, 'Email no válido.');
                     valid = false;
                 }
-            break;
+			break;
         case 'password':
             var passRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
             if (!passRegex.test(value)) {
@@ -90,13 +88,16 @@ function validateField(field) {
 for (var i = 0; i < fields.length; i++) {
     (function (field) {
         var input = document.getElementById(field);
-  
-        input.addEventListener('blur', function () {
-            validateField(field);
+		var valid = false
+		
+		input.addEventListener('blur', function () {
+            valid = validateField(field);
+				if (valid) clearError(field)
         });
-  
-        input.addEventListener('focus', function () {
-            clearError(field);
+		
+		input.addEventListener('focus', function () {
+			valid = validateField(field);
+				if (valid) clearError(field)
         });
   
         if (field === 'name') {
