@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="normalize.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="./script.js" defer></script>
+        <title>Rick & Morty API</title>
+    </head>
+    <body>
+        <h1>Rick & Morty explorador de personajes</h1>
+
+        <section class="fetch">
+            <button id="fetchAll">Mostrar personajes</button>
+        </section>
+        <h2>Filtrar personajes</h2>
+        <section class="filter">
+            <form class="form" id="filterForm">
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Nombre del personaje"
+                />
+                <label for="status">Estado del personaje:</label>
+                <select name="status" id="status">
+                    <option value="alive">Alive</option>
+                    <option value="dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <input type="text" id="species" placeholder="Especie" />
+                <input type="text" id="type" placeholder="Tipo" />
+                <label for="gender">Genero del personaje:</label>
+                <select name="gender" id="gender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <button class="button" type="submit">Buscar</button>
+            </form>
+            <div class="output" id="output">
+                <table>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>STADO</th>
+                        <th>SPECIE</th>
+                        <th>TIPO</th>
+                        <th>GENERO</th>
+                        <th>ORIGEN</th>
+                        <th>LOCACION</th>
+                        <th>IMAGEN</th>
+                    </tr>
+                    <tr>
+                        <td>hola</td>
+                        <td>hola</td>
+                        <td>hola</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="image">
+                <img src="./img/rick.png" alt="Rick" />
+            </div>
+        </section>
+    </body>
+</html>

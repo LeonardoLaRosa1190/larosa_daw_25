@@ -1,0 +1,139 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0c10;
+    color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+h1 {
+    color: #97ce4c;
+    font-size: 60px;
+}
+
+.fetch {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#fetchAll {
+    background-color: #97ce4c;
+    border: none;
+    padding: 12px 24px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #0b0c10;
+}
+
+#fetchAll:hover {
+    background-color: #c9f574;
+}
+
+h2 {
+    color: #97ce4c;
+    font-size: 50px;
+    text-shadow: 1px 1px 5px #a9f5ac;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    border: 2px solid #97ce4c;
+    background-color: #1f2833;
+    color: #f5f5f5;
+}
+
+select {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    border: 2px solid #97ce4c;
+    background-color: #1f2833;
+    color: #f5f5f5;
+}
+
+label {
+    margin-left: 15px;
+    color: #9bfa9e;
+}
+
+.button {
+    background-color: #2c3e50;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 100px;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 200px;
+    color: #97ce4c;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e536b;
+}
+
+.image img {
+    height: 450px;
+}
+
+.output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.output table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    color: #f5f5f5;
+    font-size: 20px;
+    background-color: #0b0c10;
+    border: 2px solid #97ce4c;
+}
+
+.output th,
+.output td {
+    border: 1px solid #97ce4c;
+    padding: 12px;
+    text-align: left;
+}
+
+.output th {
+    background-color: #2c3e50;
+    color: #97ce4c;
+}
+
+.output tr:hover {
+    background-color: #3e536b;
+}
+
+.output img {
+    width: 20px;
+    height: auto;
+    border-radius: 5px;
+}
