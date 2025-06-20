@@ -8,6 +8,16 @@ btnFetchAll.addEventListener('click', function () {
     fetchCharacters(API_BASE)
 })
 
+//MODAL//////////////
+var modal = document.getElementById('modal')
+var closeModal = document.getElementById('closeModal')
+var modalMessage = document.getElementById('modalMessage')
+
+closeModal.addEventListener('click', function () {
+    modal.classList.add('hidden')
+})
+/////////////////////
+
 formFilter.addEventListener('submit', function (e) {
     e.preventDefault()
 
@@ -43,15 +53,15 @@ function fetchCharacters(url) {
     fetch(url)
         .then(function (response) {
             if (!response.ok) {
-                showError(
-                    'No se encontraon personajes o hubo un error en la solicitud'
-                )
+                showError('Hubo un error en la solicitud')
             }
             return response.json()
         })
         .then(function (data) {
             if (!data.results || !data.results.length) {
-                showError('No se encontraron personajes.')
+                showError(
+                    'No se encontraron personajes con la descripción otorgada.'
+                )
             } else {
                 renderTable(data.results)
             }
@@ -69,6 +79,11 @@ function clearTable() {
 
 function showError(message) {
     clearTable()
+
+    modalMessage.style.color = '#ff0000'
+    modalMessage.textContent = message
+    modal.classList.remove('hidden')
+    formFilter.reset()
 }
 
 function renderTable(characters) {
